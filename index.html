@@ -1,410 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Indian Travel Suggestion Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Font -->
+  <title>Incredible India Travel Bot</title>
+
+  <!-- GOOGLE FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
     }
 
-    body{
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+
+      /* LIGHT MODE BG */
       background:
-      linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.25)),
-      url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2070&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      background-attachment:fixed;
-      overflow-x:hidden;
-      transition:0.5s;
-      color:white;
+        linear-gradient(rgba(255, 255, 255, 0.55),
+          rgba(255, 255, 255, 0.55)),
+        url("https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?q=80&w=2070&auto=format&fit=crop");
+
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+
+      color: #111;
+      overflow-x: hidden;
+      transition: 0.6s ease;
     }
 
-    body.dark{
+    /* DARK MODE */
+
+    body.dark {
+
       background:
-      linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)),
-      url('https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=2070&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      background-attachment:fixed;
+        linear-gradient(rgba(0, 0, 0, 0.7),
+          rgba(0, 0, 0, 0.7)),
+        url("https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=2070&auto=format&fit=crop");
+
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+
+      color: white;
     }
 
-    /* FLOATING GLOW CIRCLES */
+    /* FLOATING GLOW */
 
-    .circle{
-      position:absolute;
-      border-radius:50%;
-      filter:blur(70px);
-      z-index:-1;
-      animation:float 8s infinite ease-in-out;
+    .blur {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      filter: blur(100px);
+      z-index: -1;
+      animation: float 8s infinite ease-in-out;
     }
 
-    .circle1{
-      width:250px;
-      height:250px;
-      background:#ff8ac6;
-      top:10%;
-      left:5%;
+    .blur1 {
+      background: #ff7eb6;
+      top: 5%;
+      left: -5%;
     }
 
-    .circle2{
-      width:300px;
-      height:300px;
-      background:#9c6bff;
-      bottom:10%;
-      right:5%;
-      animation-delay:2s;
+    .blur2 {
+      background: #ffd369;
+      right: -5%;
+      bottom: 5%;
+      animation-delay: 3s;
     }
 
-    @keyframes float{
-      0%{
-        transform:translateY(0px);
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
       }
-      50%{
-        transform:translateY(-30px);
+
+      50% {
+        transform: translateY(-25px);
       }
-      100%{
-        transform:translateY(0px);
+
+      100% {
+        transform: translateY(0px);
       }
     }
 
     /* NAVBAR */
 
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 8%;
-      backdrop-filter:blur(14px);
-      background:rgba(255,255,255,0.08);
-      position:sticky;
-      top:0;
-      z-index:1000;
-      border-bottom:1px solid rgba(255,255,255,0.15);
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
 
-    .logo{
-      font-size:32px;
-      font-weight:700;
-      color:#ffd369;
-      letter-spacing:1px;
-      animation:glow 2s infinite alternate;
-    }
-
-    @keyframes glow{
-      from{
-        text-shadow:0 0 10px #ffd369;
-      }
-      to{
-        text-shadow:0 0 25px #ffd369;
-      }
+    .logo {
+      font-size: 30px;
+      font-weight: 700;
+      color: #ff4f95;
+      letter-spacing: 1px;
+      text-shadow: 0 0 20px rgba(255, 79, 149, 0.5);
     }
 
     /* TOGGLE */
 
-    .toggle-box{
-      text-align:center;
+    .toggle-box {
+      text-align: center;
     }
 
-    .switch{
-      position:relative;
-      display:inline-block;
-      width:65px;
-      height:32px;
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 65px;
+      height: 34px;
     }
 
-    .switch input{
-      opacity:0;
-      width:0;
-      height:0;
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
     }
 
-    .slider{
-      position:absolute;
-      inset:0;
-      background:#ccc;
-      border-radius:40px;
-      transition:.4s;
-      cursor:pointer;
+    .slider {
+      position: absolute;
+      inset: 0;
+      background: #ccc;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.4s;
     }
 
-    .slider:before{
-      content:"";
-      position:absolute;
-      height:24px;
-      width:24px;
-      left:4px;
-      bottom:4px;
-      background:white;
-      border-radius:50%;
-      transition:.4s;
+    .slider::before {
+      content: "";
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      left: 4px;
+      bottom: 4px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.4s;
     }
 
-    input:checked + .slider{
-      background:#ff69b4;
+    input:checked+.slider {
+      background: #ff4f95;
     }
 
-    input:checked + .slider:before{
-      transform:translateX(32px);
+    input:checked+.slider::before {
+      transform: translateX(30px);
     }
 
-    .toggle-label{
-      margin-top:6px;
-      font-size:13px;
-      color:white;
+    .toggle-text {
+      font-size: 13px;
+      margin-top: 5px;
+      color: inherit;
     }
 
     /* HERO */
 
-    .hero{
-      min-height:100vh;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:60px 8%;
-      gap:50px;
-      flex-wrap:wrap;
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 50px;
+      padding: 60px 8%;
+      flex-wrap: wrap;
     }
 
-    .left{
-      flex:1;
-      animation:slideLeft 1.2s ease;
+    /* LEFT */
+
+    .left {
+      flex: 1;
     }
 
-    @keyframes slideLeft{
-      from{
-        opacity:0;
-        transform:translateX(-50px);
+    /* TITLE ANIMATION */
+
+    .main-title {
+      font-size: 70px;
+      line-height: 1.1;
+      margin-bottom: 25px;
+
+      opacity: 0;
+      transform: translateY(80px);
+
+      animation: titleEntry 1.5s ease forwards;
+    }
+
+    @keyframes titleEntry {
+
+      0% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.9);
       }
-      to{
-        opacity:1;
-        transform:translateX(0);
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
       }
     }
 
-    .left h1{
-      font-size:65px;
-      line-height:1.1;
-      margin-bottom:25px;
+    .main-title span {
+      color: #ff4f95;
+      text-shadow: 0 0 15px rgba(255, 79, 149, 0.5);
     }
 
-    .left span{
-      color:#ffd369;
+    .hero p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      max-width: 650px;
     }
 
-    .left p{
-      font-size:18px;
-      line-height:1.8;
-      color:#f1f1f1;
-      margin-bottom:30px;
+    /* GLASS CARD */
+
+    .glass {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+      transition: 0.5s;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* GLASS BOX */
-
-    .glass-box{
-      background:rgba(255,255,255,0.12);
-      border:1px solid rgba(255,255,255,0.2);
-      backdrop-filter:blur(18px);
-      padding:30px;
-      border-radius:30px;
-      box-shadow:0 10px 40px rgba(0,0,0,0.25);
-      transition:0.5s;
-      position:relative;
-      overflow:hidden;
+    .glass:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 18px 45px rgba(255, 79, 149, 0.35);
     }
 
-    .glass-box::before{
-      content:"";
-      position:absolute;
-      width:180%;
-      height:60px;
-      background:rgba(255,255,255,0.15);
-      transform:rotate(35deg);
-      top:-60px;
-      left:-120px;
-      transition:0.8s;
+    .glass h3 {
+      color: #ff4f95;
+      margin-bottom: 12px;
+      font-size: 24px;
     }
 
-    .glass-box:hover::before{
-      top:300px;
-      left:250px;
-    }
-
-    .glass-box:hover{
-      transform:translateY(-12px) scale(1.02);
-      box-shadow:0 20px 50px rgba(255,105,180,0.4);
-    }
-
-    .glass-box h3{
-      color:#ffd369;
-      margin-bottom:15px;
-      font-size:24px;
-    }
-
-    .glass-box p{
-      font-size:15px;
-      line-height:1.9;
+    .glass p {
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 0;
     }
 
     /* BUTTON */
 
-    .btn{
-      display:inline-block;
-      margin-top:25px;
-      padding:15px 32px;
-      background:linear-gradient(135deg,#ff69b4,#ff8c42);
-      color:white;
-      text-decoration:none;
-      border-radius:40px;
-      font-weight:600;
-      transition:0.4s;
-      position:relative;
-      overflow:hidden;
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 15px 34px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ff4f95, #ff9966);
+      transition: 0.5s;
+      box-shadow: 0 8px 25px rgba(255, 79, 149, 0.35);
     }
 
-    .btn:hover{
-      transform:scale(1.08);
-      box-shadow:0 12px 30px rgba(255,105,180,0.5);
+    .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 15px 35px rgba(255, 79, 149, 0.5);
     }
 
-    /* RIGHT SIDE */
+    /* RIGHT IMAGE GRID */
 
-    .right{
-      flex:1;
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:22px;
-      animation:slideRight 1.2s ease;
+    .right {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
     }
 
-    @keyframes slideRight{
-      from{
-        opacity:0;
-        transform:translateX(50px);
+    /* IMAGE CARD */
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      transition: 0.5s;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+    }
+
+    .card:hover {
+      transform: translateY(-12px) rotate(1deg);
+      box-shadow: 0 18px 45px rgba(255, 79, 149, 0.35);
+    }
+
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: 0.7s;
+    }
+
+    .card:hover img {
+      transform: scale(1.12);
+      filter: brightness(0.75);
+    }
+
+    /* IMAGE TEXT */
+
+    .content {
+      padding: 18px;
+    }
+
+    .content h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #ff4f95;
+    }
+
+    .content p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: inherit;
+    }
+
+    /* FLOATING EMOJIS */
+
+    .emoji {
+      position: absolute;
+      font-size: 28px;
+      animation: emojiFloat 6s infinite ease-in-out;
+    }
+
+    .e1 {
+      top: 18%;
+      right: 12%;
+    }
+
+    .e2 {
+      bottom: 20%;
+      left: 7%;
+      animation-delay: 2s;
+    }
+
+    .e3 {
+      top: 65%;
+      right: 25%;
+      animation-delay: 4s;
+    }
+
+    @keyframes emojiFloat {
+      0% {
+        transform: translateY(0px);
       }
-      to{
-        opacity:1;
-        transform:translateX(0);
+
+      50% {
+        transform: translateY(-18px) rotate(10deg);
       }
-    }
 
-    .card{
-      position:relative;
-      overflow:hidden;
-      border-radius:28px;
-      cursor:pointer;
-      transition:0.5s;
-      box-shadow:0 10px 25px rgba(0,0,0,0.3);
-    }
-
-    .card img{
-      width:100%;
-      height:260px;
-      object-fit:cover;
-      transition:0.7s;
-    }
-
-    .card:hover img{
-      transform:scale(1.15) rotate(2deg);
-      filter:brightness(0.8);
-    }
-
-    .card:hover{
-      transform:translateY(-15px);
-    }
-
-    .overlay{
-      position:absolute;
-      bottom:0;
-      width:100%;
-      padding:25px;
-      background:linear-gradient(transparent,rgba(0,0,0,0.85));
-      font-size:22px;
-      font-weight:600;
-      letter-spacing:1px;
-      transition:0.5s;
-    }
-
-    .card:hover .overlay{
-      padding-bottom:40px;
-      color:#ffd369;
-    }
-
-    /* SMALL FLOATING GIF STYLE ICONS */
-
-    .emoji{
-      position:absolute;
-      font-size:28px;
-      animation:floatEmoji 6s infinite ease-in-out;
-      opacity:0.8;
-    }
-
-    .e1{
-      top:20%;
-      right:10%;
-    }
-
-    .e2{
-      bottom:20%;
-      left:8%;
-      animation-delay:2s;
-    }
-
-    .e3{
-      top:60%;
-      right:30%;
-      animation-delay:4s;
-    }
-
-    @keyframes floatEmoji{
-      0%{
-        transform:translateY(0px) rotate(0deg);
-      }
-      50%{
-        transform:translateY(-25px) rotate(10deg);
-      }
-      100%{
-        transform:translateY(0px) rotate(0deg);
+      100% {
+        transform: translateY(0px);
       }
     }
 
     /* RESPONSIVE */
 
-    @media(max-width:950px){
+    @media(max-width:950px) {
 
-      .hero{
-        flex-direction:column;
+      .hero {
+        flex-direction: column;
       }
 
-      .left h1{
-        font-size:45px;
+      .main-title {
+        font-size: 48px;
       }
 
-      .right{
-        grid-template-columns:1fr;
+      .right {
+        grid-template-columns: 1fr;
       }
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- BACKGROUND EFFECTS -->
+  <!-- GLOW -->
+  <div class="blur blur1"></div>
+  <div class="blur blur2"></div>
 
-  <div class="circle circle1"></div>
-  <div class="circle circle2"></div>
-
+  <!-- FLOATING ICONS -->
   <div class="emoji e1">✨</div>
   <div class="emoji e2">🌸</div>
   <div class="emoji e3">✈️</div>
@@ -422,7 +418,7 @@
         <span class="slider"></span>
       </label>
 
-      <div class="toggle-label">Dark Mode</div>
+      <div class="toggle-text">Dark Mode</div>
 
     </div>
 
@@ -436,26 +432,23 @@
 
     <div class="left">
 
-      <h1>
-        Explore <span>India</span> Like Never Before 🇮🇳
+      <h1 class="main-title">
+        Explore <span>India</span> In The Most Aesthetic Way 🇮🇳
       </h1>
 
       <p>
-        Discover aesthetic hidden gems, dreamy mountain cafes,
-        royal palaces, tropical beaches and pinterest-worthy
-        destinations with your AI travel assistant.
+        Discover dreamy destinations, royal palaces, mountain cafés,
+        hidden beaches and pinterest-worthy places with your AI travel assistant.
       </p>
 
-      <div class="glass-box">
+      <div class="glass">
 
-        <h3>🌸 Your Dream Travel Companion</h3>
+        <h3>🌸 Your Travel Companion</h3>
 
         <p>
-          Plan aesthetic vacations across India — from Kashmir’s snowy
-          valleys to Jaipur’s royal streets, Goa sunsets,
-          Kerala backwaters and Himachal cafés.
-          Ask the bot for itineraries, budget trips,
-          food recommendations and hidden spots ✨
+          From the magical valleys of Kashmir to Jaipur’s pink streets,
+          Goa sunsets, Kerala backwaters and snowy Himachal cafés —
+          your travel bot helps you explore India beautifully ✨
         </p>
 
         <a href="#" class="btn">Start Exploring</a>
@@ -468,24 +461,72 @@
 
     <div class="right">
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1200&auto=format&fit=crop">
-        <div class="overlay">Taj Mahal</div>
-      </div>
+      <!-- TAJ MAHAL -->
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?q=80&w=1200&auto=format&fit=crop">
-        <div class="overlay">Jaipur</div>
+
+        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="content">
+          <h3>Taj Mahal 🤍</h3>
+
+          <p>
+            One of the most iconic wonders of India located in Agra,
+            famous for its white marble beauty and dreamy sunrise views.
+          </p>
+        </div>
+
       </div>
 
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=1200&auto=format&fit=crop">
-        <div class="overlay">Kerala</div>
-      </div>
+      <!-- HAWA MAHAL -->
 
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=1200&auto=format&fit=crop">
-        <div class="overlay">Himachal</div>
+
+        <img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="content">
+          <h3>Hawa Mahal 🩷</h3>
+
+          <p>
+            Jaipur’s famous Palace of Winds known for its royal pink
+            architecture and aesthetic windows.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- KERALA -->
+
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="content">
+          <h3>Kerala 🌴</h3>
+
+          <p>
+            Peaceful backwaters, coconut trees and dreamy houseboats
+            make Kerala feel straight out of Pinterest.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- HIMACHAL -->
+
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="content">
+          <h3>Himachal 🏔️</h3>
+
+          <p>
+            Snowy mountains, cozy cafés and magical valleys —
+            perfect for peaceful aesthetic travel vibes.
+          </p>
+        </div>
+
       </div>
 
     </div>
@@ -496,10 +537,12 @@
 
   <script>
 
-    const darkToggle = document.getElementById("darkMode");
+    const toggle = document.getElementById("darkMode");
 
-    darkToggle.addEventListener("change", () => {
+    toggle.addEventListener("change", () => {
+
       document.body.classList.toggle("dark");
+
     });
 
   </script>
@@ -526,9 +569,9 @@
       const t = document.createElement('script');
 
       t.src =
-      "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
-      (window.watsonAssistantChatOptions.clientVersion || 'latest') +
-      "/WatsonAssistantChatEntry.js";
+        "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+        (window.watsonAssistantChatOptions.clientVersion || 'latest') +
+        "/WatsonAssistantChatEntry.js";
 
       document.head.appendChild(t);
 
@@ -537,4 +580,5 @@
   </script>
 
 </body>
+
 </html>
