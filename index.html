@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Travel Suggestion Bot</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background: linear-gradient(135deg,#f8f6ff,#e7f0ff,#fff5f7);
+      color:#222;
+      transition:0.5s ease;
+      overflow-x:hidden;
+    }
+
+    body.dark{
+      background: linear-gradient(135deg,#111827,#1f2937,#000);
+      color:white;
+    }
+
+    /* NAVBAR */
+    nav{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+      position:sticky;
+      top:0;
+      backdrop-filter:blur(12px);
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#ff5fa2;
+      letter-spacing:1px;
+    }
+
+    /* TOGGLE */
+    .toggle-container{
+      text-align:center;
+    }
+
+    .switch{
+      position:relative;
+      display:inline-block;
+      width:60px;
+      height:30px;
+    }
+
+    .switch input{
+      opacity:0;
+      width:0;
+      height:0;
+    }
+
+    .slider{
+      position:absolute;
+      cursor:pointer;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:#ccc;
+      transition:.4s;
+      border-radius:30px;
+    }
+
+    .slider:before{
+      position:absolute;
+      content:"";
+      height:22px;
+      width:22px;
+      left:4px;
+      bottom:4px;
+      background:white;
+      transition:.4s;
+      border-radius:50%;
+    }
+
+    input:checked + .slider{
+      background:#ff5fa2;
+    }
+
+    input:checked + .slider:before{
+      transform:translateX(28px);
+    }
+
+    .toggle-label{
+      margin-top:5px;
+      font-size:13px;
+      color:#666;
+    }
+
+    body.dark .toggle-label{
+      color:#ddd;
+    }
+
+    /* HERO SECTION */
+    .hero{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:60px 8%;
+      min-height:90vh;
+      gap:40px;
+      flex-wrap:wrap;
+    }
+
+    .left{
+      flex:1;
+      animation:fadeIn 1.5s ease;
+    }
+
+    .left h1{
+      font-size:60px;
+      line-height:1.2;
+      margin-bottom:20px;
+      color:#222;
+    }
+
+    body.dark .left h1{
+      color:white;
+    }
+
+    .left span{
+      color:#ff5fa2;
+    }
+
+    .left p{
+      font-size:18px;
+      color:#555;
+      margin-bottom:30px;
+    }
+
+    body.dark .left p{
+      color:#ddd;
+    }
+
+    .textbox{
+      background:rgba(255,255,255,0.5);
+      border:1px solid rgba(255,255,255,0.4);
+      backdrop-filter:blur(15px);
+      padding:25px;
+      border-radius:25px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.1);
+      transition:0.4s;
+    }
+
+    body.dark .textbox{
+      background:rgba(255,255,255,0.08);
+    }
+
+    .textbox:hover{
+      transform:translateY(-8px) scale(1.02);
+      box-shadow:0 12px 35px rgba(255,95,162,0.3);
+    }
+
+    .textbox h3{
+      margin-bottom:15px;
+      color:#ff5fa2;
+    }
+
+    .textbox p{
+      font-size:15px;
+      line-height:1.8;
+    }
+
+    /* RIGHT SIDE IMAGES */
+    .right{
+      flex:1;
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:20px;
+      animation:float 5s infinite ease-in-out;
+    }
+
+    .card{
+      overflow:hidden;
+      border-radius:25px;
+      position:relative;
+      cursor:pointer;
+      transition:0.5s;
+      box-shadow:0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      transition:0.5s;
+    }
+
+    .card:hover img{
+      transform:scale(1.1);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .overlay{
+      position:absolute;
+      bottom:0;
+      width:100%;
+      background:linear-gradient(transparent,rgba(0,0,0,0.8));
+      color:white;
+      padding:20px;
+      font-size:18px;
+      font-weight:600;
+    }
+
+    /* FLOATING ANIMATION */
+    @keyframes float{
+      0%{transform:translateY(0);}
+      50%{transform:translateY(-10px);}
+      100%{transform:translateY(0);}
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(30px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    /* BUTTON */
+    .btn{
+      display:inline-block;
+      padding:14px 28px;
+      background:#ff5fa2;
+      color:white;
+      border-radius:40px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.4s;
+      margin-top:15px;
+    }
+
+    .btn:hover{
+      background:#ff2f84;
+      transform:scale(1.05);
+      box-shadow:0 10px 25px rgba(255,95,162,0.4);
+    }
+
+    /* Responsive */
+    @media(max-width:900px){
+      .hero{
+        flex-direction:column;
+      }
+
+      .left h1{
+        font-size:42px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">WanderBot ✈</div>
+
+    <div class="toggle-container">
+      <label class="switch">
+        <input type="checkbox" id="darkToggle">
+        <span class="slider"></span>
+      </label>
+      <div class="toggle-label">Dark Mode</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- LEFT -->
+    <div class="left">
+      <h1>Discover Your <span>Dream Destination</span></h1>
+
+      <p>
+        Your aesthetic AI travel assistant that gives beautiful travel suggestions,
+        hidden gems, dreamy cafes, pinterest-worthy spots and unforgettable journeys.
+      </p>
+
+      <div class="textbox">
+        <h3>🌸 Travel Vibes</h3>
+
+        <p>
+          “Collect moments, not things.”  
+          Let your AI travel buddy guide you through cozy streets,
+          tropical beaches, snowy mountains and magical sunsets.
+          Ask for destinations, itineraries, cafes, solo trips,
+          luxury escapes and more ✨
+        </p>
+
+        <a href="#" class="btn">Explore Now</a>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="overlay">Maldives</div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="overlay">Paris</div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="overlay">Santorini</div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="overlay">Bali</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- DARK MODE SCRIPT -->
+  <script>
+    const toggle = document.getElementById("darkToggle");
+
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark");
+    });
+  </script>
+
+  <!-- IBM WATSON CHATBOT -->
+  <script>
+    window.watsonAssistantChatOptions = {
+      integrationID: "542b899e-458b-4b36-a238-1ffe699b0df1",
+
+      // Correct region format
+      region: "eu-de",
+
+      serviceInstanceID: "cf514a12-8ff1-4170-a748-3eac73fb9c67",
+
+      onLoad: async (instance) => {
+        await instance.render();
+      }
+    };
+
+    setTimeout(function () {
+      const t = document.createElement('script');
+
+      t.src =
+        "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+        (window.watsonAssistantChatOptions.clientVersion || 'latest') +
+        "/WatsonAssistantChatEntry.js";
+
+      document.head.appendChild(t);
+    });
+  </script>
+
+</body>
+</html>
